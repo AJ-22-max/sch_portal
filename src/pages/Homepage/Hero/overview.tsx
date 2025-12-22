@@ -10,7 +10,7 @@ interface OverviewProps {
 
 export default function Overview({ expand = false }: OverviewProps) {
   const [activeItem, setActiveItem] = useState<string>('overview');
-  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [Transitioning, setIsTransitioning] = useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState(!expand);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [animationComplete, setAnimationComplete] = useState<boolean>(false);
@@ -56,67 +56,67 @@ export default function Overview({ expand = false }: OverviewProps) {
   }, []);
 
   useEffect(() => {
-  if (!isInView || hasAnimationRun.current) return;
+    if (!isInView || hasAnimationRun.current) return;
 
-  let isCancelled = false;
+    let isCancelled = false;
 
-  const runTutorial = async () => {
-    hasAnimationRun.current = true;
+    const runTutorial = async () => {
+      hasAnimationRun.current = true;
 
-    setIsAnimating(true);
+      setIsAnimating(true);
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-    if (isCancelled) return;
-
-    for (let i = 0; i < 3; i++) {
       if (isCancelled) return;
 
-      const feature = features[i];
-      const element = navItemRefs.current[feature.id];
-
-      if (element) {
-
+      for (let i = 0; i < 3; i++) {
         if (isCancelled) return;
 
-        setIsTransitioning(true);
-        await new Promise(resolve => setTimeout(resolve, 100));
+        const feature = features[i];
+        const element = navItemRefs.current[feature.id];
 
-        if (isCancelled) return;
+        if (element) {
 
-        setActiveItem(feature.id);
-        setIsTransitioning(false);
+          if (isCancelled) return;
 
-        await new Promise(resolve => setTimeout(resolve, 1200));
-        if (isCancelled) return;
+          setIsTransitioning(true);
+          await new Promise(resolve => setTimeout(resolve, 100));
+
+          if (isCancelled) return;
+
+          setActiveItem(feature.id);
+          setIsTransitioning(false);
+
+          await new Promise(resolve => setTimeout(resolve, 1200));
+          if (isCancelled) return;
+        }
       }
+
+      if (isCancelled) return;
+
+      setIsAnimating(false);
+      setShowPopup(true); // Only show if not cancelled
+      setAnimationComplete(true);
+    };
+
+    runTutorial();
+
+    return () => {
+      isCancelled = true;
+      setIsAnimating(false);
+      setShowPopup(false); // Add this line to prevent dialog from showing
+      setAnimationComplete(true);
+    };
+  }, [isInView]);
+
+  useEffect(() => {
+    if (!isInView && isAnimating) {
+      // User scrolled away during animation
+      setIsAnimating(false);
+      setShowPopup(false); // Add this line to prevent dialog from showing
+      setAnimationComplete(true);
     }
-
-    if (isCancelled) return;
-
-    setIsAnimating(false);
-    setShowPopup(true); // Only show if not cancelled
-    setAnimationComplete(true);
-  };
-
-  runTutorial();
-
-  return () => {
-    isCancelled = true;
-    setIsAnimating(false);
-    setShowPopup(false); // Add this line to prevent dialog from showing
-    setAnimationComplete(true);
-  };
-}, [isInView]);
-
-useEffect(() => {
-  if (!isInView && isAnimating) {
-    // User scrolled away during animation
-    setIsAnimating(false);
-    setShowPopup(false); // Add this line to prevent dialog from showing
-    setAnimationComplete(true);
-  }
-}, [isInView, isAnimating]);
+  }, [isInView, isAnimating]);
 
   const currentItem = features.find(item => item.id === activeItem);
 
