@@ -13,8 +13,6 @@ export const styles = {
         zIndex: 0,
     },
     tag: {
-        bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.2),
-        borderColor: 'primary.main',
         animation: 'float 3s ease-in-out infinite',
         '@keyframes float': {
             '0%, 100%': { transform: 'translateY(0px)' },
@@ -28,7 +26,9 @@ export const styles = {
         p: 1,
         border: '1px solid',
         borderRadius: '20px',
-        px: 3
+        px: 3,
+        bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.2),
+        borderColor: 'primary.main',
     },
     tagTitle: {
         fontFamily: 'Gilroy',

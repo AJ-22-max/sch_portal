@@ -21,40 +21,6 @@ export default function Overview({ expand = false }: OverviewProps) {
   const navItemRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const hasAnimationRun = useRef<boolean>(false);
 
-  const handleItemClick = (itemId: string) => {
-    if (itemId === activeItem || !animationComplete) return;
-
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setActiveItem(itemId);
-      setIsTransitioning(false);
-    }, 100);
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimationRun.current) {
-          setIsInView(true);
-        } else {
-          // Keep this to terminate animation when scrolling away
-          setIsInView(false);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
-  }, []);
-
   useEffect(() => {
     if (!isInView || hasAnimationRun.current) return;
 
@@ -117,6 +83,39 @@ export default function Overview({ expand = false }: OverviewProps) {
       setAnimationComplete(true);
     }
   }, [isInView, isAnimating]);
+  const handleItemClick = (itemId: string) => {
+    if (itemId === activeItem || !animationComplete) return;
+
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveItem(itemId);
+      setIsTransitioning(false);
+    }, 100);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimationRun.current) {
+          setIsInView(true);
+        } else {
+          // Keep this to terminate animation when scrolling away
+          setIsInView(false);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [])
 
   const currentItem = features.find(item => item.id === activeItem);
 
