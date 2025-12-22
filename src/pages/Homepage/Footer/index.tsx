@@ -38,7 +38,7 @@ function Footer() {
                     <Box>
                         <Button size="large"
                             onClick={() => {
-                                window.location.href = 'http://localhost:5174/auth/';
+                                window.location.href = 'http://localhost:5173/auth/';
                             }}
                             sx={styles.Btn} >
                             Sign Up for Free Today

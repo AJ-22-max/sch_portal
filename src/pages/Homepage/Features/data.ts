@@ -15,7 +15,7 @@ export const featuresData: Feature[] = [
     title: "Overview",
     image: "/home/features/overview.png",
     description: "Comprehensive dashboard with real-time insights into school operations",
-    link: "http://localhost:5174/",
+    link: "http://localhost:5173/",
     color: "#8B5CF6",
     features: [
       "Real-time analytics and metrics",
@@ -29,7 +29,7 @@ export const featuresData: Feature[] = [
     title: "Account",
     image: "/home/features/account.png",
     description: "Manage user profiles, permissions, and account settings",
-    link: "http://localhost:5174/account",
+    link: "http://localhost:5173/account",
     color: "#3B82F6",
     features: [
       "User profile management",
@@ -43,7 +43,7 @@ export const featuresData: Feature[] = [
     title: "Subscription",
     image: "/home/features/subscription.png",
     description: "Handle school subscriptions, billing, and payment plans",
-    link: "http://localhost:5174/subscription/invoices",
+    link: "http://localhost:5173/subscription/invoices",
     color: "#10B981",
     features: [
       "Multiple payment options",
@@ -58,7 +58,7 @@ export const featuresData: Feature[] = [
     title: "Award Category",
     image: "/home/features/awardCategory.png",
     description: "Create and manage various award categories for students",
-    link: "http://localhost:5174/award-category",
+    link: "http://localhost:5173/award-category",
     color: "#F59E0B",
     features: [
       "Custom award creation",
@@ -72,7 +72,7 @@ export const featuresData: Feature[] = [
     title: "Award",
     image: "/home/features/award.png",
     description: "Distribute awards and recognize student achievements",
-    link: "http://localhost:5174/award",
+    link: "http://localhost:5173/award",
     color: "#EF4444",
     features: [
       "Award distribution",
@@ -86,7 +86,7 @@ export const featuresData: Feature[] = [
     title: "Departments",
     image: "/home/features/department.png",
     description: "Organize and manage school departments efficiently",
-    link: "http://localhost:5174/departments",
+    link: "http://localhost:5173/departments",
     color: "#6366F1",
     features: [
       "Department structure",
@@ -100,7 +100,7 @@ export const featuresData: Feature[] = [
     title: "Program",
     image: "/home/features/program.png",
     description: "Create and oversee academic programs and curricula",
-    link: "http://localhost:5174/program",
+    link: "http://localhost:5173/program",
     color: "#EC4899",
     features: [
       "Program creation",
@@ -114,7 +114,7 @@ export const featuresData: Feature[] = [
     title: "Courses",
     image: "/home/features/courses.png",
     description: "Manage all courses, schedules, and course materials",
-    link: "http://localhost:5174/courses",
+    link: "http://localhost:5173/courses",
     color: "#14B8A6",
     features: [
       "Course catalog",
@@ -128,7 +128,7 @@ export const featuresData: Feature[] = [
     title: "Classes",
     image: "/home/features/classes.png",
     description: "Organize classes, assign teachers, and manage student groups",
-    link: "http://localhost:5174/classes",
+    link: "http://localhost:5173/classes",
     color: "#F97316",
     features: [
       "Class scheduling",
@@ -142,7 +142,7 @@ export const featuresData: Feature[] = [
     title: "Sessions",
     image: "/home/features/sessions.png",
     description: "Manage academic sessions, terms, and school calendar",
-    link: "http://localhost:5174/sessions",
+    link: "http://localhost:5173/sessions",
     color: "#8B5CF6",
     features: [
       "Academic calendar",
@@ -156,7 +156,7 @@ export const featuresData: Feature[] = [
     title: "Semesters",
     image: "/home/features/semesters.png",
     description: "Configure semester periods and academic timelines",
-    link: "http://localhost:5174/semesters",
+    link: "http://localhost:5173/semesters",
     color: "#3B82F6",
     features: [
       "Semester setup",
@@ -170,7 +170,7 @@ export const featuresData: Feature[] = [
     title: "Users",
     image: "/home/features/users.png",
     description: "Comprehensive user management for all stakeholders",
-    link: "http://localhost:5174/manage/users",
+    link: "http://localhost:5173/manage/users",
     color: "#10B981",
     features: [
       "Student management",
@@ -185,7 +185,7 @@ export const featuresData: Feature[] = [
     title: "Admission",
     image: "/home/features/admission.png",
     description: "Streamline student admission and enrollment processes",
-    link: "http://localhost:5174/manage/admission",
+    link: "http://localhost:5173/manage/admission",
     color: "#F59E0B",
     features: [
       "Application processing",
@@ -199,7 +199,7 @@ export const featuresData: Feature[] = [
     title: "School Fees",
     image: "/home/features/schoolFees.png",
     description: "Manage tuition fees, payments, and financial records",
-    link: "http://localhost:5174/school-fees",
+    link: "http://localhost:5173/school-fees",
     color: "#EF4444",
     features: [
       "Fee structure setup",
@@ -214,7 +214,7 @@ export const featuresData: Feature[] = [
     title: "Library",
     image: "/home/features/library.png",
     description: "Digital library management with book tracking and cataloging",
-    link: "http://localhost:5174/elibary/resources",
+    link: "http://localhost:5173/elibary/resources",
     color: "#6366F1",
     features: [
       "Book catalog",
@@ -228,7 +228,7 @@ export const featuresData: Feature[] = [
     title: "Hostel",
     image: "/home/features/hostel.png",
     description: "Manage hostel accommodations and student residences",
-    link: "http://localhost:5174/manage/hostel",
+    link: "http://localhost:5173/manage/hostel",
     color: "#EC4899",
     features: [
       "Room allocation",
@@ -242,7 +242,7 @@ export const featuresData: Feature[] = [
     title: "Messages",
     image: "/home/features/messages.png",
     description: "Internal messaging system for school communication",
-    link: "http://localhost:5174/message/management",
+    link: "http://localhost:5173/message/management",
     color: "#14B8A6",
     features: [
       "Direct messaging",
@@ -256,7 +256,7 @@ export const featuresData: Feature[] = [
     title: "Documents",
     image: "/home/features/documents.png",
     description: "Store, organize, and share school documents securely",
-    link: "http://localhost:5174/documents",
+    link: "http://localhost:5173/documents",
     color: "#F97316",
     features: [
       "Document repository",
@@ -270,7 +270,7 @@ export const featuresData: Feature[] = [
     title: "Notice Board",
     image: "/home/features/noticeBoard.png",
     description: "Post and manage school notices and announcements",
-    link: "http://localhost:5174/noticeboard/see/notices",
+    link: "http://localhost:5173/noticeboard/see/notices",
     color: "#8B5CF6",
     features: [
       "Notice posting",
@@ -284,7 +284,7 @@ export const featuresData: Feature[] = [
     title: "Configuration",
     image: "/home/features/configuration.png",
     description: "System settings and school-wide configurations",
-    link: "http://localhost:5174/configurations",
+    link: "http://localhost:5173/configurations",
     color: "#3B82F6",
     features: [
       "System preferences",

@@ -383,6 +383,9 @@ export default function PricingPage() {
                             <Button
                                 variant="contained"
                                 size="large"
+                                onClick={() => {
+                                    window.location.href = 'http://localhost:5173/subscription/invoices';
+                                }}
                                 endIcon={<ArrowRight weight="bold" size={20} />}
                                 sx={styles.getBtn}
                             >
