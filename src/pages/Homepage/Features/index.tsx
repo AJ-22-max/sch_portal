@@ -34,6 +34,8 @@ export default function Features() {
     const isSm = useMediaQuery(theme.breakpoints.only('sm'));
     const isMd = useMediaQuery(theme.breakpoints.only('md'));
     const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+    const [touchStart, setTouchStart] = useState<number>(0);
+    const [touchEnd, setTouchEnd] = useState<number>(0);
 
     const cardsPerView = isXs ? 1 : isSm ? 2 : isMd ? 3 : 4;
 
@@ -137,6 +139,32 @@ export default function Features() {
     const pageCount = Math.ceil(featuresData.length / cardsPerView);
     const maxIndex = Math.max(0, pageCount - 1);
 
+    const minSwipeDistance = 20;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(0);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe && currentIndex < maxIndex) {
+            handleNext();
+        }
+        if (isRightSwipe && currentIndex > 0) {
+            handlePrev();
+        }
+    };
+
+
     const handleNext = () => {
         if (currentIndex < maxIndex) {
             setIsAnimating(true);
@@ -185,7 +213,7 @@ export default function Features() {
                     <IconButton
                         onClick={handlePrev}
                         disabled={currentIndex === 0}
-                        sx={{ left: 0, ...styles.iconButton }}
+                        sx={{ left: 0, display: { xs: 'none', sm: 'block' }, ...styles.iconButton }}
                     >
                         <ChevronLeft size={24} />
                     </IconButton>
@@ -194,13 +222,16 @@ export default function Features() {
                     <IconButton
                         onClick={handleNext}
                         disabled={currentIndex >= maxIndex}
-                        sx={{ right: 0, ...styles.iconButton }}
+                        sx={{ right: 0, display: { xs: 'none', sm: 'block' }, ...styles.iconButton }}
                     >
                         <ChevronRight size={24} />
                     </IconButton>
 
                     {/* Visible page grid: exactly up to 4 cards */}
                     <Box
+                        onTouchStart={onTouchStart}
+                        onTouchMove={onTouchMove}
+                        onTouchEnd={onTouchEnd}
                         sx={{
                             gridTemplateColumns: `repeat(${cardsPerView}, 1fr)`,
                             transform: isAnimating ? "scale(0.96)" : "scale(1)",
@@ -293,7 +324,7 @@ export default function Features() {
                                             </Typography>
 
                                             {/* description - always visible */}
-                                            <Typography sx={ styles.featureDescription }>
+                                            <Typography sx={styles.featureDescription}>
                                                 {feature.description}
                                             </Typography>
 
@@ -583,6 +614,25 @@ export default function Features() {
                             );
                         })}
                     </Box>
+                    {isXs && (
+                        <Box sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            mt: 3,
+                            color: 'grey.500',
+                            fontSize: '13px',
+                            animation: 'fadeInOut 2s ease-in-out infinite',
+                            '@keyframes fadeInOut': {
+                                '0%, 100%': { opacity: 0.4 },
+                                '50%': { opacity: 1 }
+                            }
+                        }}>
+                            <ChevronLeft size={16} />
+                            <Typography sx={{ fontSize: '13px', color: 'base.customDark' }}>Swipe or tap cards to explore</Typography>
+                            <ChevronRight size={16} />
+                        </Box>
+                    )}
                     {/* Mobile Bottom Sheet */}
                     <Drawer
                         anchor="bottom"

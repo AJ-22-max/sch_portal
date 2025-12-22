@@ -214,8 +214,10 @@ function Footer() {
                         <Grid size={{ xs: 12, sm: 4 }}>
                             <Stack direction="row" spacing={1.5} alignItems="center"
                                 onClick={() => {
-                                    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=support@schoolportal.com&su=Support Request&body=Hello, I need help with...', '_blank');
-                                }}
+    const link = document.createElement('a');
+    link.href = 'mailto:support@schoolportal.com?subject=Support Request&body=Hello, I need help with...';
+    link.click();
+}}
                                 sx={{
                                     '&:hover': {
                                         cursor: 'pointer'
