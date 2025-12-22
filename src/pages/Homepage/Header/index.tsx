@@ -224,7 +224,7 @@ const Header = ({
                         <Button
                             size="large"
                             onClick={() => {
-                                window.location.href = 'http://localhost:5174/auth/';
+                                window.location.href = 'http://localhost:5173/auth/';
                             }}
                             sx={{
                                 ...styles.loginBtn,
@@ -394,7 +394,7 @@ const Header = ({
                         {/* Login Button */}
                         <Button
                             onClick={() => {
-                                window.location.href = 'http://localhost:5174/auth/';
+                                window.location.href = 'http://localhost:5173/auth/';
                             }}
                             size="large"
                             sx={{
@@ -420,7 +420,7 @@ const Header = ({
                         <Button
                             size="large"
                             onClick={() => {
-                                window.location.href = 'http://localhost:5174/auth/';
+                                window.location.href = 'http://localhost:5173/auth/';
                             }}
                             sx={styles.startBtn}>
                             Get Started
@@ -809,7 +809,7 @@ const Header = ({
                             <Button
                                 fullWidth
                                 onClick={() => {
-                                window.location.href = 'http://localhost:5174/manage/users';
+                                window.location.href = 'http://localhost:5173/manage/users';
                             }}
                                 sx={{
                                     mt: 2,
