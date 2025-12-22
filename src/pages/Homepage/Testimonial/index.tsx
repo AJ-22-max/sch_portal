@@ -8,7 +8,7 @@ import { styles } from './style';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 
 
-function Testimonial(): JSX.Element {
+function Testimonial() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
     const muiTheme = useTheme();
