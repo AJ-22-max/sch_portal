@@ -224,7 +224,7 @@ const Header = ({
                         <Button
                             size="large"
                             onClick={() => {
-                                window.location.href = 'http://localhost:5173/auth/';
+                                window.location.href = 'https://portal-sp.vercel.app/';
                             }}
                             sx={{
                                 ...styles.loginBtn,
@@ -372,14 +372,18 @@ const Header = ({
                         sx={styles.sideActions}>
 
                         {/* Phone Number */}
-                        <Box sx={{
-                            bgcolor: shouldHaveWhiteBg ? ((theme) => alpha(theme.palette.primary.main, 0.1)) : ((theme) => alpha(theme.palette.base.main, 0.2)),
-                            '&:hover': {
-                                bgcolor: shouldHaveWhiteBg ? ((theme) => alpha(theme.palette.primary.main, 0.2)) : ((theme) => alpha(theme.palette.base.main, 0.3)),
-                                cursor: 'pointer'
-                            },
-                            ...styles.phoneBox
-                        }}>
+                        <Box
+                            onClick={() => {
+                                window.open('https://wa.me/2348000000000?text=Hello, I would like to inquire about SchoolPortal', '_blank');
+                            }}
+                            sx={{
+                                bgcolor: shouldHaveWhiteBg ? ((theme) => alpha(theme.palette.primary.main, 0.1)) : ((theme) => alpha(theme.palette.base.main, 0.2)),
+                                '&:hover': {
+                                    bgcolor: shouldHaveWhiteBg ? ((theme) => alpha(theme.palette.primary.main, 0.2)) : ((theme) => alpha(theme.palette.base.main, 0.3)),
+                                    cursor: 'pointer'
+                                },
+                                ...styles.phoneBox
+                            }}>
                             <Phone sx={{ fontSize: 18, color: shouldHaveWhiteBg ? '#C057F3' : 'white' }} />
                             <Typography
                                 sx={{
@@ -394,7 +398,7 @@ const Header = ({
                         {/* Login Button */}
                         <Button
                             onClick={() => {
-                                window.location.href = 'http://localhost:5173/auth/';
+                                window.location.href = 'https://portal-sp.vercel.app/';
                             }}
                             size="large"
                             sx={{
@@ -420,7 +424,7 @@ const Header = ({
                         <Button
                             size="large"
                             onClick={() => {
-                                window.location.href = 'http://localhost:5173/auth/';
+                                window.location.href = 'https://portal-sp.vercel.app/';
                             }}
                             sx={styles.startBtn}>
                             Get Started
@@ -809,8 +813,8 @@ const Header = ({
                             <Button
                                 fullWidth
                                 onClick={() => {
-                                window.location.href = 'http://localhost:5173/manage/users';
-                            }}
+                                    window.location.href = 'https://portal-sp.vercel.app/manage/users';
+                                }}
                                 sx={{
                                     mt: 2,
                                     py: 1.5,
@@ -966,7 +970,19 @@ const Header = ({
                         <Typography sx={{ fontSize: '13px', color: '#666' }}>
                             Need more help?
                         </Typography>
-                        <Button variant="text" sx={styles.resourceBtn}>
+                        <Button
+                            onClick={() => {
+                                const contactSection = document.getElementById('contact');
+                                if (contactSection) {
+                                    contactSection.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                    });
+                                }
+                                handleClose();
+                            }}
+                            variant="text"
+                            sx={styles.resourceBtn}>
                             Contact Support →
                         </Button>
                     </Box>

@@ -73,7 +73,7 @@ function Hero() {
                             {/* Primary Button */}
                             <Button
                             onClick={() => {
-                                window.location.href = 'http://localhost:5173/auth/';
+                                window.location.href = 'https://portal-sp.vercel.app/';
                             }}
                                 size="large"
                                 sx={styles.startButton}>

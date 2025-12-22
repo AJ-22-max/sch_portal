@@ -192,6 +192,11 @@ export default function FAQ() {
                                         fullWidth
                                         size="large"
                                         endIcon={<ArrowRight weight="bold" size={20} />}
+                                        onClick={() => {
+    const link = document.createElement('a');
+    link.href = 'mailto:support@schoolportal.com?subject=Support Request&body=Hello, I need help with...';
+    link.click();
+}}
                                         sx={styles.supportBtn}
                                     >
                                         Contact Support

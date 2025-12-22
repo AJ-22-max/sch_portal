@@ -384,7 +384,7 @@ export default function PricingPage() {
                                 variant="contained"
                                 size="large"
                                 onClick={() => {
-                                    window.location.href = 'http://localhost:5173/subscription/invoices';
+                                    window.location.href = 'https://portal-sp.vercel.app/subscription/invoices';
                                 }}
                                 endIcon={<ArrowRight weight="bold" size={20} />}
                                 sx={styles.getBtn}

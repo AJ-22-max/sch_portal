@@ -393,13 +393,17 @@ function MobileDrawer({
                         fullWidth
                         size="large"
                         onClick={() => {
-                            window.location.href = 'http://localhost:5173/auth/';
+                            window.location.href = 'https://portal-sp.vercel.app/';
                         }}
                         sx={styles.mobileStartBtn} >
                         Get Started
                     </Button>
 
-                    <Box sx={{ mt: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+                    <Box
+                        onClick={() => {
+                            window.open('https://wa.me/2348000000000?text=Hello, I would like to inquire about SchoolPortal', '_blank');
+                        }}
+                        sx={{ mt: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                         <Phone sx={{ fontSize: '16px !important', color: '#666 !important' }} />
                         <Typography sx={{ color: '#666 !important', fontSize: '13px !important' }}>
                             +234 800 000 0000

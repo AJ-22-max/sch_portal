@@ -38,7 +38,7 @@ function Footer() {
                     <Box>
                         <Button size="large"
                             onClick={() => {
-                                window.location.href = 'http://localhost:5173/auth/';
+                                window.location.href = 'https://portal-sp.vercel.app/';
                             }}
                             sx={styles.Btn} >
                             Sign Up for Free Today
@@ -212,7 +212,16 @@ function Footer() {
                 <Box sx={{ mt: 6, mb: 4 }}>
                     <Grid container spacing={3}>
                         <Grid size={{ xs: 12, sm: 4 }}>
-                            <Stack direction="row" spacing={1.5} alignItems="center">
+                            <Stack direction="row" spacing={1.5} alignItems="center"
+                                onClick={() => {
+                                    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=support@schoolportal.com&su=Support Request&body=Hello, I need help with...', '_blank');
+                                }}
+                                sx={{
+                                    '&:hover': {
+                                        cursor: 'pointer'
+                                    }
+                                }}
+                            >
                                 <Email sx={{ color: 'secondary.main' }} />
                                 <Typography sx={{ fontFamily: 'Gilroy', fontWeight: 400, fontSize: '15px', color: 'secondary.main' }}>
                                     support@schoolportal.com
@@ -220,7 +229,16 @@ function Footer() {
                             </Stack>
                         </Grid>
                         <Grid size={{ xs: 12, sm: 4 }}>
-                            <Stack direction="row" spacing={1.5} alignItems="center">
+                            <Stack direction="row" spacing={1.5} alignItems="center"
+                                onClick={() => {
+                                    window.open('https://wa.me/2348000000000?text=Hello, I would like to inquire about SchoolPortal', '_blank');
+                                }}
+                                sx={{
+                                    '&:hover': {
+                                        cursor: 'pointer'
+                                    }
+                                }}
+                            >
                                 <Phone sx={{ color: 'secondary.main' }} />
                                 <Typography sx={{ fontFamily: 'Gilroy', fontWeight: 400, fontSize: '15px', color: 'secondary.main' }}>
                                     +234 800 000 0000
