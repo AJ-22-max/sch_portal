@@ -37,9 +37,7 @@ function Footer() {
                     </Typography>
                     <Box>
                         <Button size="large"
-                            onClick={() => {
-                                window.location.href = 'https://portal-sp.vercel.app/';
-                            }}
+                            onClick={() => navigate('/auth/signup')}
                             sx={styles.Btn} >
                             Sign Up for Free Today
                         </Button>

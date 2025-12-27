@@ -223,9 +223,7 @@ const Header = ({
                     <Box sx={{ display: { xs: 'flex', lg: 'none' }, gap: 2, alignItems: 'center', py: 1 }}>
                         <Button
                             size="large"
-                            onClick={() => {
-                                window.location.href = 'https://portal-sp.vercel.app/';
-                            }}
+                            onClick={() => navigate('/auth/login')}
                             sx={{
                                 ...styles.loginBtn,
                                 backdropFilter: shouldHaveWhiteBg ? 'none' : 'blur(6px)',
@@ -397,9 +395,7 @@ const Header = ({
 
                         {/* Login Button */}
                         <Button
-                            onClick={() => {
-                                window.location.href = 'https://portal-sp.vercel.app/';
-                            }}
+                            onClick={() => navigate('/auth/login')}
                             size="large"
                             sx={{
                                 ...styles.loginBtn,
@@ -423,9 +419,7 @@ const Header = ({
                         {/* Get Started Button */}
                         <Button
                             size="large"
-                            onClick={() => {
-                                window.location.href = 'https://portal-sp.vercel.app/';
-                            }}
+                            onClick={() => navigate('/auth/signup')}
                             sx={styles.startBtn}>
                             Get Started
                         </Button>

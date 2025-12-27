@@ -392,9 +392,7 @@ function MobileDrawer({
 
                         fullWidth
                         size="large"
-                        onClick={() => {
-                            window.location.href = 'https://portal-sp.vercel.app/';
-                        }}
+                        onClick={() => navigate('/auth/signup')}
                         sx={styles.mobileStartBtn} >
                         Get Started
                     </Button>

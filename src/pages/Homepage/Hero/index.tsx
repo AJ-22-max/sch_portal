@@ -72,9 +72,7 @@ function Hero() {
                         >
                             {/* Primary Button */}
                             <Button
-                            onClick={() => {
-                                window.location.href = 'https://portal-sp.vercel.app/';
-                            }}
+                            onClick={() => navigate('/auth/signup')}
                                 size="large"
                                 sx={styles.startButton}>
                                 Get Started For Free
