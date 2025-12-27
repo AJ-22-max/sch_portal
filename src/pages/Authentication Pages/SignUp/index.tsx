@@ -63,6 +63,15 @@ function SignUp() {
             behavior: 'smooth'
         });
     }, [activeStep]);
+    
+    useEffect(() => {
+        if (success) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    }, [success]);
 
     const handleInputChange = (field: string, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
