@@ -176,7 +176,7 @@ export const styles = {
     mb: 4
   },
   statsBannerTypography: {
-    textAlign: { xs: 'center', md: 'center', lg: 'left' },
+    textAlign: { xs: 'center', md: 'center' },
     fontSize: { xs: '14px', sm: '17px', md: '17px' },
     fontWeight: 600,
     mb: 3,

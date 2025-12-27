@@ -470,7 +470,7 @@ function SignUp() {
                     <Grid
                         size={{ xs: 4, md: 4 }}
                         key={idx}
-                        sx={{ textAlign: { xs: 'center', md: 'center', lg: 'left' } }}
+                        sx={{ textAlign: { xs: 'center', md: 'center' } }}
                     >
                         <Typography sx={{
                             fontSize: { xs: '18px', sm: '24px', md: '24px', lg: '20px' },
@@ -505,7 +505,7 @@ function SignUp() {
                             </Typography>
                         </Box>
 
-                        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                        <Box sx={{ display: { xs: 'none', md: 'block', lg: 'none' } }}>
                             <StatsBanner />
                         </Box>
 
@@ -638,7 +638,7 @@ function SignUp() {
                             </Typography>
                         </Box>
 
-                        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+                        <Box sx={{ display: { xs: 'block', md: 'none', lg: 'block' } }}>
                             <StatsBanner />
                         </Box>
 
