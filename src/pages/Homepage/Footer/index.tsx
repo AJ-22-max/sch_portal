@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { Box, Button, Container, Grid, Typography, Link, Stack, IconButton, Divider, alpha } from "@mui/material";
 import { Facebook, Twitter, LinkedIn, Instagram, YouTube, Email, Phone, LocationOn } from "@mui/icons-material";
 import { footerLinks } from "./data";
 import { styles } from "./styles";
 
 function Footer() {
+    const navigate = useNavigate();
     const socialLinks = [
         { icon: <Facebook />, href: "#facebook", label: "Facebook" },
         { icon: <Twitter />, href: "#twitter", label: "Twitter" },
