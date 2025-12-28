@@ -193,7 +193,7 @@ export const styles = {
     overflowY: 'auto',
   },
   logoBox: {
-    mb: { xs: 3, md: 5, lg: 3 },
+    mb: 3,
     display: 'flex',
     alignItems: 'center',
     gap: 1.5,
@@ -201,7 +201,9 @@ export const styles = {
     transition: 'transform 0.2s',
     '&:hover': {
       transform: 'translateX(-4px)'
-    }
+    },
+    justifyContent:  { md: 'center', lg: 'left'}
+
   },
   leftGridContainer: {
     minHeight: { md: 'auto', lg: '100vh' },
@@ -264,7 +266,12 @@ export const styles = {
     alignItems: 'center',
     pt: 4,
     borderTop: '1px solid #f1f5f9',
-    mt: 4
+    mt: 4,
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    MozUserSelect: 'none',
+    msUserSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
   },
   footerTypography: {
     color: "#64748b",
@@ -278,7 +285,12 @@ export const styles = {
     "&:hover": {
       color: '#0f172a',
       transform: 'translateX(-4px)'
-    }
+    },
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    MozUserSelect: 'none',
+    msUserSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
   },
   rightGrid: {
     display: 'flex',
@@ -292,8 +304,8 @@ export const styles = {
     display: { xs: "flex", md: "none" },
     alignItems: "center",
     gap: 1.5,
-    mb: 5,
-    justifyContent: 'left'
+    mb: 3,
+    justifyContent: 'center'
   },
   mobileLogoText: {
     fontSize: { xs: '20px', sm: '28px' },
@@ -406,6 +418,11 @@ export const styles = {
     cursor: "pointer",
     "&:hover": {
       opacity: 0.8
-    }
+    },
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    MozUserSelect: 'none',
+    msUserSelect: 'none',
+    WebkitTapHighlightColor: 'transparent',
   }
 }

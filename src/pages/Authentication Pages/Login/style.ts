@@ -158,6 +158,11 @@ export const styles = {
         "&:hover": {
             opacity: 0.8,
         },
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        WebkitTapHighlightColor: 'transparent',
     },
     resend: {
         fontWeight: 600,
@@ -168,6 +173,11 @@ export const styles = {
         "&:hover": {
             opacity: 0.8,
         },
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        WebkitTapHighlightColor: 'transparent',
     },
     loginBtn: {
         py: { xs: '5px !important', sm: '7px !important' },
@@ -234,6 +244,11 @@ export const styles = {
         "&:hover": {
             opacity: 0.8,
         },
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        WebkitTapHighlightColor: 'transparent',
     },
     otpTextField: {
         width: "50px",
