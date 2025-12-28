@@ -16,7 +16,7 @@ export const styles = {
       xs: 15,
       md: 19
     },
-    backgroundImage: 'url(/home/hero/bgImage.png)',
+    backgroundImage: 'url(/home/hero/bgImage.webp)',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',

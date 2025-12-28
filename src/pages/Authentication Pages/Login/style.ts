@@ -5,7 +5,7 @@ export const styles = {
         justifyContent: "center",
         position: "relative",
         overflow: "hidden",
-        backgroundImage: 'url(/auth/login.png)',
+        backgroundImage: 'url(/auth/login.webp)',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
