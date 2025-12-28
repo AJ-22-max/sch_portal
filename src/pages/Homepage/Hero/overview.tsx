@@ -75,14 +75,27 @@ export default function Overview({ expand = false }: OverviewProps) {
     };
   }, [isInView]);
 
+  // Cancel animation on any user scroll/click
   useEffect(() => {
-    if (!isInView && isAnimating) {
-      // User scrolled away during animation
-      setIsAnimating(false);
-      setShowPopup(false); // Add this line to prevent dialog from showing
-      setAnimationComplete(true);
-    }
-  }, [isInView, isAnimating]);
+    const handleUserInteraction = () => {
+      if (isAnimating && !animationComplete) {
+        hasAnimationRun.current = true;
+        setIsAnimating(false);
+        setShowPopup(false);
+        setAnimationComplete(true);
+      }
+    };
+
+    // Listen for scroll and click events
+    window.addEventListener('scroll', handleUserInteraction);
+    window.addEventListener('click', handleUserInteraction);
+
+    return () => {
+      window.removeEventListener('scroll', handleUserInteraction);
+      window.removeEventListener('click', handleUserInteraction);
+    };
+  }, [isAnimating, animationComplete]);
+
   const handleItemClick = (itemId: string) => {
     if (itemId === activeItem || !animationComplete) return;
 
@@ -99,11 +112,16 @@ export default function Overview({ expand = false }: OverviewProps) {
         if (entry.isIntersecting && !hasAnimationRun.current) {
           setIsInView(true);
         } else {
-          // Keep this to terminate animation when scrolling away
           setIsInView(false);
+          if (isAnimating) {
+            hasAnimationRun.current = true;
+            setIsAnimating(false);
+            setShowPopup(false);
+            setAnimationComplete(true);
+          }
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (containerRef.current) {

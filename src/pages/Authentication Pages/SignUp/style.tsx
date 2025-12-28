@@ -134,7 +134,7 @@ export const styles = {
       transform: 'translate(14px, -9px) scale(0.75)',
     },
     '& .MuiInputBase-input': {
-      fontFamily: 'Gilroy', fontWeight: 700,
+      fontFamily: 'Gilroy', fontWeight: 500,
       px: 2,
       fontSize: '14px',
     }
@@ -146,7 +146,7 @@ export const styles = {
       fontWeight: 500
     },
     '& .MuiInputBase-input': {
-      fontFamily: 'Gilroy', fontWeight: 700,
+      fontFamily: 'Gilroy', fontWeight: 500,
       px: 2,
       fontSize: '14px',
     }
@@ -154,7 +154,7 @@ export const styles = {
   basicTextField: {
     mb: 3,
     '& .MuiInputBase-input': {
-      fontFamily: 'Gilroy', fontWeight: 700,
+      fontFamily: 'Gilroy', fontWeight: 500,
       px: 2,
       fontSize: '14px',
     }
@@ -342,10 +342,11 @@ export const styles = {
   },
   backCardBtn: {
     textTransform: "none",
-    fontWeight: 600,
     flex: 1,
-    py: 1.75,
-    fontSize: '15px',
+    py: { xs: '5px !important', sm: '7px !important' },
+    fontFamily: "Gilroy",
+    fontWeight: 700,
+    fontSize: { xs: "13px !important", sm: "14.5px !important" },
     borderColor: '#e5e7eb',
     color: '#64748b',
     borderRadius: 2,
@@ -356,14 +357,14 @@ export const styles = {
   },
   continueCardBtn: {
     flex: 1,
-    fontFamily: 'Gilroy',
+    py: { xs: '5px !important', sm: '7px !important' },
+    fontFamily: "Gilroy",
     fontWeight: 700,
-    fontSize: '15px',
+    fontSize: { xs: "13px !important", sm: "14.5px !important" },
     textTransform: 'none',
     color: '#fff',
     background: 'linear-gradient(135deg, #d87093 0%, #8a2be2 100%)',
     borderRadius: 2,
-    py: 1.75,
     boxShadow: '0 4px 16px rgba(138, 43, 226, 0.2)',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     '&:hover': {

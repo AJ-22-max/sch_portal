@@ -63,7 +63,7 @@ function SignUp() {
             behavior: 'smooth'
         });
     }, [activeStep]);
-    
+
     useEffect(() => {
         if (success) {
             window.scrollTo({
@@ -627,7 +627,7 @@ function SignUp() {
                                 <East sx={{ transform: 'scaleX(-1)', fontSize: '16px' }} />
                                 Back to home
                             </Typography>
-                            <Typography onClick={() => navigate("/")} sx={styles.footerTypography} >
+                            <Typography onClick={() => navigate("/auth/login")} sx={styles.footerTypography} >
                                 Sign in
                             </Typography>
                         </Box>
@@ -733,6 +733,7 @@ function SignUp() {
                             <Box sx={styles.cardBtn}>
                                 {activeStep > 0 && (
                                     <Button
+                                        size="large"
                                         variant="outlined"
                                         onClick={handleBack}
                                         startIcon={<ArrowBack />}
@@ -743,7 +744,7 @@ function SignUp() {
                                 )}
 
                                 <Button
-                                    variant="contained"
+                                    size="large"
                                     onClick={activeStep === steps.length - 1 ? handleSubmit : handleNext}
                                     disabled={loading}
                                     endIcon={activeStep < steps.length - 1 && <East />}
@@ -806,7 +807,7 @@ function SignUp() {
                                 <East sx={{ transform: 'scaleX(-1)', fontSize: '16px' }} />
                                 Back to home
                             </Typography>
-                            <Typography onClick={() => navigate("/")} sx={styles.footerTypography} >
+                            <Typography onClick={() => navigate("/auth/login")} sx={styles.footerTypography} >
                                 Sign in
                             </Typography>
                         </Box>

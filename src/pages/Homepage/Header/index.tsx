@@ -871,37 +871,50 @@ const Header = ({
                         <MenuItem
                             key={idx}
                             onClick={() => {
-                                if (resource.title === "Video Tutorials") {
-                                    const demoSection = document.getElementById('demo');
-                                    if (demoSection) {
-                                        demoSection.scrollIntoView({
-                                            behavior: 'smooth',
-                                            block: 'start'
-                                        });
+                                if (location.pathname === '/pricing') {
+                                    // Navigate to home with section hash
+                                    if (resource.title === "Video Tutorials") {
+                                        navigate('/?section=demo');
+                                    } else if (resource.title === "Documentation") {
+                                        navigate('/?section=docs');
+                                    } else if (resource.title === "Help Center") {
+                                        navigate('/?section=contact');
+                                    } else if (resource.title === "API Reference") {
+                                        navigate('/?section=api');
                                     }
-                                } else if (resource.title === "Documentation") {
-                                    const docsSection = document.getElementById('docs');
-                                    if (docsSection) {
-                                        docsSection.scrollIntoView({
-                                            behavior: 'smooth',
-                                            block: 'start'
-                                        });
-                                    }
-                                } else if (resource.title === "Help Center") {
-                                    const helpSection = document.getElementById('help');
-                                    if (helpSection) {
-                                        helpSection.scrollIntoView({
-                                            behavior: 'smooth',
-                                            block: 'start'
-                                        });
-                                    }
-                                } else if (resource.title === "API Reference") {
-                                    const apiSection = document.getElementById('api');
-                                    if (apiSection) {
-                                        apiSection.scrollIntoView({
-                                            behavior: 'smooth',
-                                            block: 'start'
-                                        });
+                                } else {
+                                    if (resource.title === "Video Tutorials") {
+                                        const demoSection = document.getElementById('demo');
+                                        if (demoSection) {
+                                            demoSection.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start'
+                                            });
+                                        }
+                                    } else if (resource.title === "Documentation") {
+                                        const docsSection = document.getElementById('docs');
+                                        if (docsSection) {
+                                            docsSection.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start'
+                                            });
+                                        }
+                                    } else if (resource.title === "Help Center") {
+                                        const helpSection = document.getElementById('contact');
+                                        if (helpSection) {
+                                            helpSection.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start'
+                                            });
+                                        }
+                                    } else if (resource.title === "API Reference") {
+                                        const apiSection = document.getElementById('api');
+                                        if (apiSection) {
+                                            apiSection.scrollIntoView({
+                                                behavior: 'smooth',
+                                                block: 'start'
+                                            });
+                                        }
                                     }
                                 }
                                 handleClose();
