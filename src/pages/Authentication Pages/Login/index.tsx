@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import {
     Box,
     Container,
@@ -23,13 +25,19 @@ import OTPInput from "./otp";
 import type { AnimatedSquare } from "./data";
 import { movements } from "./data";
 import { styles } from "./style";
+import { useLogin, useResendOtp } from "../../../hooks/auth";
+import { updateUser } from "../../../store/slices/userSlice";
 
 function Login() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { login, loading: loginLoading } = useLogin();
+    const { resendOtp, loading: resendLoading } = useResendOtp();
+
     const [showPassword, setShowPassword] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [requires2FA, setRequires2FA] = useState(false);
+    const [parentLoginData, setParentLoginData] = useState<any>(null);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -72,42 +80,83 @@ function Login() {
     };
 
     const handleLogin = async () => {
-        if (!formData.email || !formData.password) {
-            setError("Please fill in all required fields");
-            return;
+        // If we're in 2FA mode, only check OTP
+        if (requires2FA) {
+            if (!formData.otp || formData.otp.length !== 6) {
+                setError("Please enter the complete 6-digit OTP");
+                return;
+            }
+        } else {
+            // If we're in login mode, check email and password
+            if (!formData.email || !formData.password) {
+                setError("Please fill in all required fields");
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                setError("Please enter a valid email address");
+                return;
+            }
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-            setError("Please enter a valid email address");
-            return;
-        }
-
-        setLoading(true);
         setError("");
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            const has2FA = Math.random() > 0.5;
+            const loginData = {
+                email: formData.email,
+                password: formData.password,
+                ...(requires2FA && { otp: formData.otp })
+            };
 
-            if (has2FA && !requires2FA) {
+            const result = await login(loginData);
+
+            if (!result) return;
+
+            // Handle OTP requirement
+            if (result.otp) {
                 setRequires2FA(true);
-                setLoading(false);
+                toast.info("Please enter the OTP sent to your email");
                 return;
             }
 
-            if (requires2FA && !formData.otp) {
-                setError("Please enter the 6-digit OTP");
-                setLoading(false);
+            // Handle parent login (multiple students)
+            if (result.students) {
+                setParentLoginData(result);
+                // Navigate to student selection page
+                navigate("/select-student", { state: result });
                 return;
             }
 
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            navigate("/dashboard");
-        } catch {
+            // Handle successful regular login
+            if (result.status && result.user && result.token) {
+                dispatch(updateUser({
+                    user: result.user,
+                    token: result.token,
+                    student: result.student
+                }));
+
+                toast.success("Login successful!");
+
+                // Ensure data is persisted before redirect
+                // Redux-persist uses a debounce, so we wait for it
+                await new Promise(resolve => setTimeout(resolve, 200));
+                window.location.href = "https://portal-sp.vercel.app/";
+            }
+        } catch (err) {
             setError("Login failed. Please check your credentials.");
-        } finally {
-            setLoading(false);
+        }
+    };
+
+    const handleResendOtp = async () => {
+        if (!formData.email) {
+            toast.error("Email is required");
+            return;
+        }
+
+        const result = await resendOtp({ email: formData.email });
+        if (result) {
+            toast.success("OTP resent successfully!");
         }
     };
 
@@ -123,6 +172,8 @@ function Login() {
 
         return positions[position];
     };
+
+    const loading = loginLoading || resendLoading;
 
     return (
         <Box sx={{ minHeight: "100vh", bgcolor: "secondary.main", position: "relative" }}>
@@ -226,6 +277,7 @@ function Login() {
                                         value={formData.email}
                                         onChange={(e) => handleInputChange("email", e.target.value)}
                                         placeholder="name@school.com"
+                                        onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -245,6 +297,7 @@ function Login() {
                                         value={formData.password}
                                         onChange={(e) => handleInputChange("password", e.target.value)}
                                         placeholder="Enter your password"
+                                        onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -299,8 +352,16 @@ function Login() {
                                             }}
                                         >
                                             Didn't receive code?{" "}
-                                            <Typography component="span" sx={styles.resend} >
-                                                Resend
+                                            <Typography
+                                                component="span"
+                                                sx={{
+                                                    ...styles.resend,
+                                                    opacity: resendLoading ? 0.5 : 1,
+                                                    pointerEvents: resendLoading ? 'none' : 'auto'
+                                                }}
+                                                onClick={handleResendOtp}
+                                            >
+                                                {resendLoading ? "Sending..." : "Resend"}
                                             </Typography>
                                         </Typography>
                                     </Box>
@@ -339,7 +400,7 @@ function Login() {
                             {/* Back Button for 2FA */}
                             {requires2FA && (
                                 <Button
-                                size="large"
+                                    size="large"
                                     fullWidth
                                     variant="outlined"
                                     onClick={() => {
