@@ -26,6 +26,7 @@ import {
     DocumentScanner,
     East
 } from "@mui/icons-material";
+import { useSignup } from "../../../hooks/auth";
 import { nextData, schoolTypes, statsData, steps, stepsData } from "./data";
 import { styles } from "./style";
 
@@ -37,10 +38,12 @@ const iconMap: Record<string, React.ReactNode> = {
 
 function SignUp() {
     const navigate = useNavigate();
+    const { signup, loading: signupLoading } = useSignup();
     const [activeStep, setActiveStep] = useState(0);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
+    const [referenceNumber, setReferenceNumber] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         avatar: "",
@@ -162,43 +165,61 @@ function SignUp() {
         setError("");
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Prepare the data for API
+            const signupData = {
+                name: formData.name,
+                avatar: formData.avatar || null,
+                school_type: formData.school_type,
+                email: formData.email,
+                phone: formData.phone,
+                country: formData.country,
+                population: parseInt(formData.population),
+                address: formData.address,
+                website: formData.website || null,
+                reg_number: formData.reg_number || null,
+                cert_incorporation: formData.cert_incorporation
+            };
 
-            // Here you would make your actual API call
-            // const response = await fetch('/api/schools/register', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify(formData)
-            // });
+            console.log("📤 Submitting signup data:", signupData);
 
-            setSuccess(true);
-        } catch {
+            const result = await signup(signupData);
+
+            if (result && result.success) {
+                // Generate or use the reference number from backend
+                const refNum = result.data?.reference ||
+                    `SP-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`;
+
+                setReferenceNumber(refNum);
+                setSuccess(true);
+            } else {
+                setError("Registration failed. Please try again.");
+            }
+        } catch (err) {
+            console.error("Registration error:", err);
             setError("Registration failed. Please try again.");
         } finally {
             setLoading(false);
         }
     };
 
+    // Update the reference number display in success modal
     if (success) {
         return (
             <Box sx={styles.successModal}>
                 <Container maxWidth="md">
                     <Box sx={styles.successBox}>
-                        {/* Simple Icon */}
                         <Box sx={styles.successIcon}>
                             <CheckCircle sx={{ fontSize: 36, color: "#10b981" }} />
                         </Box>
 
-                        {/* Heading */}
                         <Typography variant="h4" sx={styles.successHeading} >
                             Application Submitted Successfully
                         </Typography>
 
-                        {/* Reference Number */}
+                        {/* Use the stored reference number */}
                         <Typography sx={styles.referenceNumber}>
                             REFERENCE: <Box component="span" sx={{ fontWeight: 700, color: '#0f172a' }}>
-                                SP-{new Date().getFullYear()}-{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}
+                                {referenceNumber}
                             </Box>
                         </Typography>
 
@@ -239,6 +260,8 @@ function SignUp() {
             </Box>
         );
     }
+
+    const isLoading = loading || signupLoading;
 
     const renderStepContent = () => {
         switch (activeStep) {
@@ -627,9 +650,6 @@ function SignUp() {
                                 <East sx={{ transform: 'scaleX(-1)', fontSize: '16px' }} />
                                 Back to home
                             </Typography>
-                            <Typography onClick={() => navigate("/auth/login")} sx={styles.footerTypography} >
-                                Sign in
-                            </Typography>
                         </Box>
                     </Container>
                 </Grid>
@@ -746,15 +766,13 @@ function SignUp() {
                                 <Button
                                     size="large"
                                     onClick={activeStep === steps.length - 1 ? handleSubmit : handleNext}
-                                    disabled={loading}
+                                    disabled={isLoading} // Use isLoading instead of just loading
                                     endIcon={activeStep < steps.length - 1 && <East />}
                                     sx={styles.continueCardBtn}
                                 >
-                                    {loading ? (
+                                    {isLoading ? (
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                                            <Box
-                                                sx={styles.processing}
-                                            />
+                                            <Box sx={styles.processing} />
                                             Processing...
                                         </Box>
                                     ) : (
@@ -771,33 +789,9 @@ function SignUp() {
                             )}
                         </Box>
 
-                        {/* Bottom Helper Text */}
-                        <Box sx={{
-                            textAlign: 'center',
-                            mt: 4,
-                            display: { xs: 'block', md: 'none' }
-                        }}>
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: '#64748b',
-                                    fontSize: '13px'
-                                }}
-                            >
-                                Already have an account?{" "}
-                                <Typography
-                                    component="span"
-                                    onClick={() => navigate("/auth/login")}
-                                    sx={styles.helperText}
-                                >
-                                    Sign in
-                                </Typography>
-                            </Typography>
-                        </Box>
-
                         <Box sx={{
                             display: { xs: 'none', md: 'flex', lg: 'none' },
-                            justifyContent: 'space-between',
+                            justifyContent: 'flex-end',
                             alignItems: 'center',
                             pt: 4,
                             borderTop: '1px solid #f1f5f9',
@@ -806,9 +800,6 @@ function SignUp() {
                             <Typography onClick={() => navigate("/")} sx={styles.footerTypography} >
                                 <East sx={{ transform: 'scaleX(-1)', fontSize: '16px' }} />
                                 Back to home
-                            </Typography>
-                            <Typography onClick={() => navigate("/auth/login")} sx={styles.footerTypography} >
-                                Sign in
                             </Typography>
                         </Box>
                     </Container>

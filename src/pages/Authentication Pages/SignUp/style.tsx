@@ -262,7 +262,7 @@ export const styles = {
   },
   mdFooter: {
     display: { xs: 'none', lg: 'flex' },
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     pt: 4,
     borderTop: '1px solid #f1f5f9',

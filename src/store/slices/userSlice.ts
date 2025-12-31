@@ -9,17 +9,9 @@ const userSlice = createSlice({
       state.user = payload?.user;
       state.token = payload?.token;
       state.student = payload?.student;
-    },
-    updateUser(state, action) {
-      return { ...state, ...action.payload };
-    },
-    clearUser(state: any) {
-      state.user = null;
-      state.token = null;
-      state.student = null;
-    },
+    }
   },
 });
 
-export const { setUser, clearUser, updateUser } = userSlice.actions;
+export const { setUser } = userSlice.actions;
 export const userReducer = userSlice.reducer;

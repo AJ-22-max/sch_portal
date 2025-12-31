@@ -222,19 +222,6 @@ const Header = ({
                     {/* Mobile Menu Button - Only show on xs/sm */}
                     <Box sx={{ display: { xs: 'flex', lg: 'none' }, gap: 2, alignItems: 'center', py: 1 }}>
                         <Button
-                            size="large"
-                            onClick={() => navigate('/auth/login')}
-                            sx={{
-                                ...styles.loginBtn,
-                                backdropFilter: shouldHaveWhiteBg ? 'none' : 'blur(6px)',
-                                bgcolor: shouldHaveWhiteBg ? '#ffffff !important' : 'transparent !important',
-                                color: shouldHaveWhiteBg ? '#000000 !important' : '#ffffff !important',
-                                transform: 'translateY(-2px) scale(1.03)'
-                            }}
-                        >
-                            Login
-                        </Button>
-                        <Button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             sx={{
                                 color: shouldHaveWhiteBg ? '#000000 !important' : 'white !important',
@@ -392,29 +379,6 @@ const Header = ({
                                 +234 800 000 0000
                             </Typography>
                         </Box>
-
-                        {/* Login Button */}
-                        <Button
-                            onClick={() => navigate('/auth/login')}
-                            size="large"
-                            sx={{
-                                ...styles.loginBtn,
-                                backdropFilter: shouldHaveWhiteBg ? 'none' : 'blur(6px)',
-                                bgcolor: shouldHaveWhiteBg ? '#ffffff !important' : 'transparent !important',
-                                color: shouldHaveWhiteBg ? '#000000 !important' : '#ffffff !important',
-                                border: shouldHaveWhiteBg
-                                    ? '2px solid #000000'
-                                    : '2px solid rgba(255,255,255,0.5)',
-                                '&:hover': {
-                                    transform: 'translateY(-2px) scale(1.03)',
-                                    backgroundColor: shouldHaveWhiteBg ? '#f3f3f3' : 'rgba(255,255,255,0.2)',
-                                    borderColor: 'transparent',
-                                    boxShadow: '0 0 12px rgba(192, 87, 243, 0.4)',
-                                },
-                            }}
-                        >
-                            Login
-                        </Button>
 
                         {/* Get Started Button */}
                         <Button

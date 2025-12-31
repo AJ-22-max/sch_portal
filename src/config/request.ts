@@ -1,10 +1,6 @@
 import { useCallback, useRef } from "react";
-import { useNavigate } from "react-router";
 import { apiReq } from "../constants/request";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { clearUser } from "../store/slices/userSlice";
-import { useMiddleware } from "../hooks/middleware";
 
 interface ErrorHandlingOptions {
   onError?: (error: any) => any;
@@ -18,9 +14,6 @@ interface ErrorHandlingOptions {
 }
 
 export const useRequest = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { isApplicanant } = useMiddleware();
   const controllersRef = useRef<Map<string, AbortController>>(new Map());
 
   const createWrapper = useCallback(
@@ -76,19 +69,6 @@ export const useRequest = () => {
           const status = error?.response?.status;
           if (status === 401) {
             toast.error("Session expired. Please login again.");
-
-            if (options.logoutOnExpiry !== false) {
-              dispatch(clearUser());
-            }
-
-            if (options.redirectOnUnauth !== false) {
-              dispatch(clearUser());
-              if (isApplicanant()) {
-                navigate("/admission/login", { replace: true });
-              } else {
-                navigate("/auth/login", { replace: true });
-              }
-            }
             return;
           }
 
@@ -128,7 +108,7 @@ export const useRequest = () => {
         abort: () => controller?.abort(),
       });
     },
-    [navigate, dispatch, isApplicanant],
+    [],
   );
 
   // Utility to abort all pending requests
