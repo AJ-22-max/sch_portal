@@ -11,25 +11,23 @@ import Pricing from "./Pricing";
 import FAQ from "./FAQ";
 
 function Homepage() {
-    const navigate = useNavigate();
 
     useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const scrollTo = params.get('scrollTo');
-    
-    if (scrollTo === 'demo') {
-        setTimeout(() => {
-            const demoSection = document.getElementById('demo');
-            if (demoSection) {
-                demoSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-            navigate('/', { replace: true });
-        }, 100);
-    }
-}, [ navigate]);
+        const params = new URLSearchParams(location.search);
+        const section = params.get('section');
+
+        if (section) {
+            setTimeout(() => {
+                const element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 100);
+        }
+    }, []);
 
     return (
         <Box>

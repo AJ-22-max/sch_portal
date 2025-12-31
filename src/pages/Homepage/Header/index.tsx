@@ -836,7 +836,6 @@ const Header = ({
                             key={idx}
                             onClick={() => {
                                 if (location.pathname === '/pricing') {
-                                    // Navigate to home with section hash
                                     if (resource.title === "Video Tutorials") {
                                         navigate('/?section=demo');
                                     } else if (resource.title === "Documentation") {
