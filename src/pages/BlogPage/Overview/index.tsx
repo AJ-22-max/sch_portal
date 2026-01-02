@@ -1,4 +1,4 @@
-import { Box, Button, Container, Typography, Grid, Card, CardMedia, CardContent, Chip, Stack } from "@mui/material";
+import { Box, Button, Container, Typography, Grid, Card, CardMedia, CardContent, Chip } from "@mui/material";
 import { ArrowRight, CalendarBlank, User } from "@phosphor-icons/react";
 
 // Sample blog data
@@ -93,7 +93,6 @@ function Overview() {
                     {/* View All - Desktop */}
                     <Button
                         size="large"
-                        onClick={() => navigate('/auth/signup')}
                         sx={{
                             fontFamily: 'Gilroy',
                             fontWeight: 700,
