@@ -213,7 +213,7 @@ const Header = ({
                             }}
                         />
                         <Typography
-                            sx={{ color: shouldHaveWhiteBg ? '#1a1a1a' : 'white', ...styles.logoText }}
+                            sx={{ ...styles.logoText, color: shouldHaveWhiteBg ? '#1a1a1a' : 'white' }}
                         >
                             SchoolPortal
                         </Typography>
@@ -469,7 +469,7 @@ const Header = ({
                                                 );
 
                                                 if (matchingFeature) {
-                                                    if (location.pathname === '/pricing') {
+                                                    if (location.pathname === '/pricing' || location.pathname === '/blog') {
                                                         navigate(`/?feature=${matchingFeature.id}`);
                                                     } else {
                                                         const featuresSection = document.getElementById('features');
@@ -835,11 +835,13 @@ const Header = ({
                         <MenuItem
                             key={idx}
                             onClick={() => {
-                                if (location.pathname === '/pricing') {
+                                if (location.pathname === '/pricing' || location.pathname === '/blog') {
                                     if (resource.title === "Video Tutorials") {
                                         navigate('/?section=demo');
                                     } else if (resource.title === "Documentation") {
                                         navigate('/?section=docs');
+                                    } else if (resource.title === "Blog") {
+                                        navigate('/blog');
                                     } else if (resource.title === "Help Center") {
                                         navigate('/?section=contact');
                                     } else if (resource.title === "API Reference") {
@@ -870,6 +872,8 @@ const Header = ({
                                                 block: 'start'
                                             });
                                         }
+                                    } else if (resource.title === "Blog") {
+                                        navigate('/blog');
                                     } else if (resource.title === "API Reference") {
                                         const apiSection = document.getElementById('api');
                                         if (apiSection) {
