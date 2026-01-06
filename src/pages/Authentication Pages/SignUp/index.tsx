@@ -97,12 +97,13 @@ function SignUp() {
   const validateStep = (step: number): boolean => {
     switch (step) {
       case 0: {
-        if (!formData.name || !formData.school_type || !formData.population) {
+        if (!formData.name || !formData.school_type || !formData.population || !formData.avatar) {
           setError("Please fill in all required fields");
           return false;
         }
         break;
       }
+
       case 1: {
         if (
           !formData.email ||
@@ -134,8 +135,8 @@ function SignUp() {
         break;
       }
       case 2: {
-        if (!formData.cert_incorporation) {
-          setError("Certificate of incorporation is required");
+        if (!formData.cert_incorporation || !formData.reg_number) {
+          setError("Please fill in all required fields");
           return false;
         }
         break;
@@ -175,7 +176,7 @@ function SignUp() {
         country: formData.country,
         population: String(formData.population),
         address: formData.address,
-        website: formData.website || null,
+        website: formData.website || "",
         reg_number: formData.reg_number || null,
         cert_incorporation: formData.cert_incorporation,
       };
@@ -184,8 +185,11 @@ function SignUp() {
 
       const result = await signup(signupData);
 
-      if (result) {
+      if (result?.success) {
         setSuccess(true);
+      } else if (result?.message) {
+        // Display the error message from backend
+        setError(`Registration failed. ${result.message}`);
       } else {
         setError("Registration failed. Please try again.");
       }
@@ -306,7 +310,7 @@ function SignUp() {
                 color="base.customDark"
                 sx={{ opacity: 0.7 }}
               >
-                Upload school logo (optional)
+                Upload school logo (required)
               </Typography>
             </Box>
 
@@ -438,8 +442,9 @@ function SignUp() {
             </Typography>
 
             <TextField
+              required
               fullWidth
-              label="Registration Number (Optional)"
+              label="Registration Number"
               value={formData.reg_number}
               onChange={(e) => handleInputChange("reg_number", e.target.value)}
               placeholder="e.g., RC-123456"
@@ -603,9 +608,9 @@ function SignUp() {
                             background:
                               activeStep > item.step
                                 ? {
-                                    md: "linear-gradient(90deg, #d87093 0%, #8a2be2 100%)",
-                                    lg: "linear-gradient(180deg, #d87093 0%, #8a2be2 100%)",
-                                  }
+                                  md: "linear-gradient(90deg, #d87093 0%, #8a2be2 100%)",
+                                  lg: "linear-gradient(180deg, #d87093 0%, #8a2be2 100%)",
+                                }
                                 : "#e5e7eb",
                           }}
                         />
@@ -670,9 +675,9 @@ function SignUp() {
                           background:
                             activeStep > item.step
                               ? {
-                                  md: "linear-gradient(90deg, #d87093 0%, #8a2be2 100%)",
-                                  lg: "linear-gradient(180deg, #d87093 0%, #8a2be2 100%)",
-                                }
+                                md: "linear-gradient(90deg, #d87093 0%, #8a2be2 100%)",
+                                lg: "linear-gradient(180deg, #d87093 0%, #8a2be2 100%)",
+                              }
                               : "#e5e7eb",
                         }}
                       />
