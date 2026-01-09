@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Box, Button, Dialog, DialogContent, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { features } from './data';
 import { ListIcon } from "@phosphor-icons/react";
 import { styles, getWrapStyles } from './styles';
@@ -143,47 +143,6 @@ export default function Overview({ expand = false }: OverviewProps) {
     <Box ref={containerRef}
       sx={styles.overviewParent}>
       {/* Dialog box */}
-      <Dialog
-        open={showPopup}
-        onClose={() => { }}
-        disableEscapeKeyDown
-        slotProps={{
-          backdrop: {
-            sx: {
-              backdropFilter: 'blur(6px)',
-              backgroundColor: 'rgba(0, 0, 0, 0.4)',
-            }
-          },
-          paper: {
-            sx: {
-              borderRadius: '20px',
-              padding: '40px',
-              background: 'linear-gradient(to bottom, #ffffff, #f8fafc)',
-              maxWidth: '420px',
-              boxShadow: '0 24px 48px rgba(0, 0, 0, 0.12)',
-            }
-          }
-        }}
-      >
-        <DialogContent sx={{ textAlign: 'center', padding: 0 }}>
-          <Box sx={styles.dialogueContentBox}>
-            <Box component="span" sx={{ color: 'white', fontSize: '32px', fontWeight: 'bold' }}>→</Box>
-          </Box>
-          <Typography variant="h5" sx={{ fontWeight: 700, mb: 1.5, color: '#0f172a', fontSize: '22px' }}>
-            Navigation Tutorial Complete
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 4, color: '#64748b', lineHeight: 1.6, fontSize: '15px' }}>
-            Click any sidebar item to switch between sections
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={() => setShowPopup(false)}
-            sx={styles.exploringButton}
-          >
-            Start Exploring
-          </Button>
-        </DialogContent>
-      </Dialog>
       {/* Sidebar */}
       <Box sx={styles.sideNav}>
         {/* Logo */}
